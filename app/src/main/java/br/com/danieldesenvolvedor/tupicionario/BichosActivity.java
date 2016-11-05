@@ -2,7 +2,9 @@ package br.com.danieldesenvolvedor.tupicionario;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -16,14 +18,11 @@ public class BichosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bichos);
 
         String[] bichosArray = getResources().getStringArray(R.array.bichos_array);
-        List<String> bichosList = Arrays.asList(bichosArray);
 
-        LinearLayout root = (LinearLayout) findViewById(R.id.rootBichos);
-        for (String bicho : bichosList){
-            TextView textView = new TextView(this);
-            textView.setText(bicho);
-            root.addView(textView);
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, bichosArray);
+
+        ListView listView = (ListView) findViewById(R.id.rootBichos);
+        listView.setAdapter(adapter);
 
     }
 }
